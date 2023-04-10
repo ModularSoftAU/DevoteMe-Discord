@@ -10,7 +10,6 @@ export async function sendDevotion(client) {
         const devotionFetchURL = `${process.env.APIURL}/devotion/get`;
         const devotionResponse = await fetch(devotionFetchURL);
         const devotionData = await devotionResponse.json();
-        console.log(devotionData);
 
         const guild = await client.guilds.cache.get(config.discord.guildID);
         if (!guild) {
