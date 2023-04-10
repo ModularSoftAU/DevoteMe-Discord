@@ -2,7 +2,12 @@ import { SapphireClient } from '@sapphire/framework';
 import packageData from './package.json' assert {type: "json"};
 
 import dotenv from 'dotenv';
-dotenv.config()
+dotenv.config();
+
+//
+// Cron Jobs
+//
+import('./cron/daily.js');
 
 // 
 // Discord
