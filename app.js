@@ -1,6 +1,6 @@
 import { SapphireClient } from '@sapphire/framework';
-import { GatewayIntentBits } from 'discord.js';
 import packageData from './package.json' assert {type: "json"};
+
 import dotenv from 'dotenv';
 dotenv.config()
 
@@ -9,14 +9,14 @@ dotenv.config()
 // 
 const client = new SapphireClient({
     intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.GuildMembers
+        'GUILDS',
+        'GUILD_MESSAGES',
+        'GUILD_MEMBERS',
     ],
     presence: {
         status: "online",
         activities: [{
-            name: `config.siteConfiguration.siteAddress`,
+            name: 'https://modularsoft.org/docs/products/devoteMe/',
             type: 'PLAYING'
         }]
     }
