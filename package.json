@@ -1,0 +1,25 @@
+{
+  "name": "devoteme-discord",
+  "version": "1.0",
+  "description": "A discord bot to help with the DevoteMe api repository.",
+  "main": "app.js",
+  "type": "module",
+  "homepage": "https://github.com/ModularSoftAU/DevoteMe-Discord",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon  --experimental-modules --experimental-json-modules --experimental-specifier-resolution=node"
+  },
+  "engines": {
+    "npm": ">=8.5.0",
+    "node": "16.17.0"
+  },
+  "keywords": [],
+  "author": "ModularSoft",
+  "license": "ISC",
+  "dependencies": {
+    "@sapphire/framework": "^4.2.2",
+    "discord.js": "^14.9.0",
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.22"
+  }
+}
