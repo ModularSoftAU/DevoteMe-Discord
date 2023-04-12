@@ -2,12 +2,8 @@ import { SapphireClient } from '@sapphire/framework';
 import packageData from './package.json' assert {type: "json"};
 
 import dotenv from 'dotenv';
+import dailyCron from './cron/daily.js';
 dotenv.config();
-
-//
-// Cron Jobs
-//
-import('./cron/daily.js');
 
 // 
 // Discord
@@ -26,6 +22,12 @@ const client = new SapphireClient({
         }]
     }
 });
+
+//
+// Cron Jobs
+//
+import('./cron/daily.js');
+dailyCron(client);
 
 client.login(process.env.DISCORDAPIKEY);
 
