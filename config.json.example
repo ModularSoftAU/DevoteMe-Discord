@@ -1,0 +1,8 @@
+{
+    "discord": {
+        "guildID": "GUILDID",
+        "channel": {
+            "devotion": "DEVOTIONCHANNELID"
+        }
+    }
+}
