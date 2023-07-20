@@ -54,8 +54,8 @@ export async function sendDevotion(client) {
             return;
         }
 
-        const devotionChannel = guild.channels.cache.get(channelId);
-        if (!channelId) {
+        const devotionChannel = guild.channels.cache.get(config.discord.channel.devotion);
+        if (!devotionChannel) {
             console.log('Channel not found.');
             return;
         }
