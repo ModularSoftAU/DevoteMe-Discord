@@ -2,7 +2,8 @@
     "discord": {
         "guildID": "GUILDID",
         "channel": {
-            "devotion": "DEVOTIONCHANNELID"
+            "devotion": "DEVOTIONCHANNELID",
+            "votd": "VOTDCHANNELID"
         }
     }
 }
