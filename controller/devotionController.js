@@ -3,26 +3,26 @@ import config from '../config.json' assert {type: "json"};
 import { MessageEmbed } from 'discord.js';
 
 /*
-    Get Devotion from API and send to channel.
+    Get Devotion from API.
 */
-export async function sendDevotion(client) {
+export async function getDevotion() {
     try {
         const devotionFetchURL = `${process.env.APIURL}/devotion/get`;
         const devotionResponse = await fetch(devotionFetchURL);
         const devotionData = await devotionResponse.json();
 
-        const guild = await client.guilds.cache.get(config.discord.guildID);
-        if (!guild) {
-            console.log('Guild not found.');
-            return;
-        }
+        return devotionData;
+    } catch (error) {
+        console.log(error);
+        return;
+    }
+}
 
-        const devotionChannel = guild.channels.cache.get(config.discord.channel.devotion);
-        if (!devotionChannel) {
-            console.log('Devotion channel not found.');
-            return;
-        }
-
+/*
+    
+*/
+export async function compileDevotionMessage(devotionData) {
+    try {
         // Join the content array into a single string with paragraph breaks
         const contentString = devotionData.content.join('\n\n');
 
@@ -32,6 +32,34 @@ export async function sendDevotion(client) {
             .setColor('#cbff7c')
             .addField('Bible In A Year Reading', devotionData.bibleInOneYear)
             .setFooter(`${devotionData.credit}`)
+            
+        return embed;
+    } catch (error) {
+        console.log(error);
+        return;
+    }
+}
+
+/*
+    Send Devotion to channel
+*/
+export async function sendDevotion(client) {
+    try {
+        const devotionData = await getDevotion();
+        const embed = await compileDevotionMessage(devotionData);
+
+        const guild = await client.guilds.cache.get(config.discord.guildID);
+        if (!guild) {
+            console.log('Guild not found.');
+            return;
+        }
+
+        const devotionChannel = guild.channels.cache.get(channelId);
+        if (!channelId) {
+            console.log('Channel not found.');
+            return;
+        }
+
         devotionChannel.send({ embeds: [embed] });
     } catch (error) {
         console.log(error);
