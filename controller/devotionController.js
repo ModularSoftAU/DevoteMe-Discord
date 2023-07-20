@@ -3,7 +3,7 @@ import config from '../config.json' assert {type: "json"};
 import { MessageEmbed } from 'discord.js';
 
 /*
-    Clears
+    Get Devotion from API and send to channel.
 */
 export async function sendDevotion(client) {
     try {

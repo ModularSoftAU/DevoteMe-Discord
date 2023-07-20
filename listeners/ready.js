@@ -1,5 +1,4 @@
 import { Listener } from '@sapphire/framework';
-import { sendDevotion } from '../controller/devotionController';
 
 export class ReadyListener extends Listener {
   run(client) {
