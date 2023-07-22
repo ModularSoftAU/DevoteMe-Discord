@@ -43,7 +43,7 @@ export async function compileVotdMessage(votdData) {
 export async function sendVotd(client) {
     try {
         const votdData = await getVotd();
-        const embed = await compiletVotdMessage(votdData);
+        const embed = await compileVotdMessage(votdData);
 
         const guild = await client.guilds.cache.get(config.discord.guildID);
         if (!guild) {

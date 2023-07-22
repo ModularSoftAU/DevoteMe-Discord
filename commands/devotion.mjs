@@ -5,7 +5,7 @@ export class DevotionCommand extends Command {
   constructor(context, options) {
     super(context, {
       ...options,
-      description: 'Display today\'s devotion.',
+      description: 'Display today\'s Devotion.',
       chatInputCommand: {
         register: true,
         behaviorWhenNotIdentical: RegisterBehavior.Overwrite
