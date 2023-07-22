@@ -28,7 +28,7 @@ export async function compileVotdMessage(votdData) {
             .setURL(votdData.referenceLink)
             .setDescription(votdData.content)
             .setColor('#cbff7c')
-            .setFooter(`Provided by ${votdData.credit}`)
+            .setFooter({ text: `Provided by ${votdData.credit}` })
 
         return embed;
     } catch (error) {

@@ -30,8 +30,10 @@ export async function compileDevotionMessage(devotionData) {
             .setTitle(`[${devotionData.date}] ${devotionData.title} (${devotionData.reading})`)
             .setDescription(contentString)
             .setColor('#cbff7c')
-            .addField('Bible In A Year Reading', devotionData.bibleInOneYear)
-            .setFooter(`${devotionData.credit}`)
+            .addFields(
+                { name: 'Bible In A Year Reading', value: devotionData.bibleInOneYear }
+            )
+            .setFooter({ text: `${devotionData.credit}` })
             
         return embed;
     } catch (error) {
