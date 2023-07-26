@@ -25,6 +25,6 @@ export class DevotionCommand extends Command {
     const devotionData = await getDevotion();
     const embed = await compileDevotionMessage(devotionData);
 
-    return await interaction.reply({ embeds: [embed] });
+    return interaction.reply({ embeds: [embed] });
   }
 }

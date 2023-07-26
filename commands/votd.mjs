@@ -25,6 +25,6 @@ export class VotdCommand extends Command {
     const votdData = await getVotd();
     const embed = await compileVotdMessage(votdData);
 
-    return await interaction.reply({ embeds: [embed] });
+    return interaction.reply({ embeds: [embed] });
   }
 }
