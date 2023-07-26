@@ -16,7 +16,7 @@ export default async function dailyCron(client) {
     sendDevotionTask.start();
 
     const sendVotdTask = cron.schedule('0 7 * * *', async function () {
-        sendVotd(client)
+        sendVotd(client);
     }, {
         scheduled: true,
         timezone: process.env.TZ
