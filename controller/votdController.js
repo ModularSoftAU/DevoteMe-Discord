@@ -25,7 +25,6 @@ export async function compileVotdMessage(votdData) {
     try {
         const embed = new MessageEmbed()
             .setTitle(`[${votdData.date}] ${votdData.reference}`)
-            .setURL(votdData.referenceLink)
             .setDescription(votdData.content)
             .setColor('#cbff7c')
             .setFooter({ text: `Provided by ${votdData.credit}` })
