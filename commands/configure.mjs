@@ -1,55 +1,66 @@
-import { Command, RegisterBehavior } from '@sapphire/framework';
+import { Subcommand } from '@sapphire/plugin-subcommands';
 
-export class ConfigureCommand extends Command {
+// Extend `Subcommand` instead of `Command`
+export class ConfigureCommand extends Subcommand {
   constructor(context, options) {
     super(context, {
       ...options,
-      description: 'Configure to apply changes to features.',
-      chatInputCommand: {
-        register: true,
-        behaviorWhenNotIdentical: RegisterBehavior.Overwrite
-      },
+      name: 'vip',
+      subcommands: [
+        {
+          name: 'list',
+          chatInputRun: 'chatInputList',
+          default: true,
+        },
+        {
+          name: 'setTimezone',
+          chatInputRun: 'chatInputTimezone'
+        },
+        {
+          name: 'votdChannel',
+          chatInputRun: 'chatVotdChannel'
+        },
+        {
+          name: 'devotionChannel',
+          chatInputRun: 'chatDevotionChannel'
+        },
+        {
+          name: 'prayerChannel',
+          chatInputRun: 'chatPrayerChannel'
+        }
+      ]
     });
-
-    // Define subcommands
-    this.subcommands = [
-      {
-        name: 'timezone',
-        description: 'Configure the timezone.',
-      },
-      {
-        name: 'channel',
-        description: 'Configure the channel id for specific features to send to.',
-      },
-      // Add more subcommands here if needed
-    ];
   }
 
   registerApplicationCommands(registry) {
-    // Register main command
     registry.registerChatInputCommand((builder) =>
       builder
-        .setName(this.name)
-        .setDescription(this.description)
+        .setName('vip')
+        .setDescription('Configure options for guild') // Needed even though base command isn't displayed to end user
+        .addSubcommand((command) => command.setName('list').setDescription('List configuration for guild.'))
+        .addSubcommand((command) =>
+          command
+            .setName('setTimezone')
+            .setDescription('Set the timezone for messages to be sent')
+        )
+        .addSubcommand((command) =>
+          command
+            .setName('votdChannel')
+            .setDescription('Set the channel of where messages are to be sent')
+            .addChannelOption((option) =>
+              option.setName('user').setDescription('user to add to vip list').setRequired(true)
+            )
+        )
     );
-
-    // Register subcommands
-    for (const subcommand of this.subcommands) {
-      registry.registerChatInputCommand((builder) =>
-        builder
-          .setName(subcommand.name)
-          .setDescription(subcommand.description)
-      );
-    }
   }
 
-  async chatInputRun(interaction) {
-    interaction.reply(`Use /${this.name} help for available subcommands.`);
+  async chatInputList(interaction) {
+    interaction.reply(`List all configuration`)
   }
 
-  async timezoneSubcommand(interaction) {
-    interaction.reply(`Configure timezone logic`);
+  async chatInputTimezone(interaction) {
+    interaction.reply(`List all timezones to set`)
   }
 
-  // Implement methods for other subcommands here if needed
+  async chatInputRemove(interaction) { }
 }
